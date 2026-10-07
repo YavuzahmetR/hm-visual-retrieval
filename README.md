@@ -186,6 +186,33 @@ Download the official ResNet18 weights into the project's model cache:
 
 ### Local Visual Search Demo
 
+#### Demo Preview
+
+The screenshots below show the same catalog query: **Mom Shorts - Grey - Denim**
+(`article_id: 0468480002`, `product_code: 0468480`). The query itself is excluded
+from the results.
+
+**Catalog query and search controls**
+
+![Catalog query with product name, variant attributes, and search controls](reports/demo/catalog_query.png)
+
+**Learned projection head - 128D**
+
+![Top five projection-head results with product names, cosine scores, and family labels](reports/demo/projection_results.png)
+
+**Frozen ResNet18 baseline - 512D**
+
+![Top five frozen-baseline results for the same catalog query](reports/demo/frozen_results.png)
+
+Both models retrieve two same-family variants in this example. The projection
+head places them at ranks 1 and 2; the frozen baseline places them at ranks
+1 and 3. Other-family matches remain. This selected UI example illustrates
+retrieval behavior; the aggregate metrics above describe overall performance.
+Cosine scores from the two embedding spaces should not be compared as
+probabilities of correctness.
+
+#### Run Locally
+
 From the project root in Windows Git Bash:
 
 ```bash
