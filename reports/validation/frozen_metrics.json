@@ -1,0 +1,19 @@
+{
+  "model": "ResNet18 ImageNet1K V1; frozen; fc=Identity",
+  "split": "validation",
+  "queries": 8110,
+  "relevance": "same product_code, excluding the query image",
+  "ap_denominator": "min(K, number of relevant gallery images)",
+  "seconds": 587.2542958999984,
+  "metrics": {
+    "recall@1": 0.13929806783302418,
+    "hit_rate@1": 0.37361282367447596,
+    "map@1": 0.37361282367447596,
+    "recall@5": 0.2837156842934578,
+    "hit_rate@5": 0.5593094944512947,
+    "map@5": 0.27588515550075354,
+    "recall@10": 0.35369185560808347,
+    "hit_rate@10": 0.6297163995067817,
+    "map@10": 0.2653087763396905
+  }
+}

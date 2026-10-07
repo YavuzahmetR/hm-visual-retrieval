@@ -1,0 +1,20 @@
+{
+  "seed": 42,
+  "epochs": 20,
+  "families_per_batch": 64,
+  "variants_per_family": 2,
+  "margin": 0.2,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "head": "Linear(512, 128, bias=False) + L2 normalization",
+  "encoder": "Frozen ResNet18 ImageNet1K V1; cached 512-D embeddings",
+  "selection_metric": "validation map@10",
+  "relevance": "same product_code; self-match excluded",
+  "ap_denominator": "min(K, number of relevant gallery images)",
+  "torch_version": "2.6.0+cu124",
+  "patience": 3,
+  "parent_run": "projection_head_v1",
+  "starting_epoch": 5,
+  "resume_mode": "weights_only_new_optimizer",
+  "sampling_seed": 47
+}

@@ -1,0 +1,13 @@
+{
+  "majority_baseline": {
+    "validation_accuracy_rounded": 0.5211,
+    "validation_macro_f1": 0.171293,
+    "category": "Garment Upper body",
+    "source": "Previously completed Kaggle calculations, reported by user"
+  },
+  "small_cnn_epoch_2": {
+    "validation_accuracy": 0.524158,
+    "validation_macro_f1": 0.208214,
+    "source": "Previously completed Kaggle training; see artifacts/small_cnn_history.csv"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "data_root": "C:/datasets/hm_data",
+  "manifest": "artifacts/subset_manifest.csv",
+  "seed": 42
+}
