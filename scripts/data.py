@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-PROJECT_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = Path(__file__).resolve().parents[1]
 
 
 def load_manifest() -> tuple[pd.DataFrame, Path]:
