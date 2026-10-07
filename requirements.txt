@@ -6,3 +6,4 @@ scikit-learn
 matplotlib
 ipykernel
 tqdm
+streamlit==1.65.0
