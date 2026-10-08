@@ -1,0 +1,1258 @@
+{
+  "source_commit": "484a835e0c3cc072ad6b90e4731f4ecefefe3ca2",
+  "verification_date": "2026-10-09",
+  "kind": "bounded_manual_old_new_comparison",
+  "runtime": {
+    "python": "3.12.13",
+    "torch": "2.6.0+cu124",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "device": "cpu",
+    "threads": 2
+  },
+  "checks": [
+    {
+      "check": "protected_asset_bytes",
+      "passed": true,
+      "detail": {
+        "files": 26,
+        "changed": []
+      }
+    },
+    {
+      "check": "syntax",
+      "passed": true,
+      "detail": {
+        "files": 32
+      }
+    },
+    {
+      "check": "removed_package_initializers",
+      "passed": true,
+      "detail": "Namespace imports; class constructors remain."
+    },
+    {
+      "check": "manifest",
+      "passed": true,
+      "detail": {
+        "rows": 81087
+      }
+    },
+    {
+      "check": "robust_resources",
+      "passed": true,
+      "detail": {
+        "gallery_rows": 8065,
+        "frozen_dim": 512,
+        "projection_dim": 128
+      }
+    },
+    {
+      "check": "robust_catalog_0_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_0_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_350_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_350_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_701_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_701_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_1051_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_1051_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_1402_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_1402_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_1753_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_1753_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_2103_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_2103_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_2454_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_2454_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_2804_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_2804_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_3155_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_3155_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_3506_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_3506_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_3856_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_3856_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_4207_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_4207_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_4557_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_4557_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_4908_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_4908_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_5259_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_5259_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_5609_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_5609_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_5960_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_5960_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_6310_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_6310_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_6661_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_6661_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_7012_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_7012_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_7362_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_7362_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_7713_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_7713_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_8064_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_catalog_8064_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "robust_upload_1e35fba6-3262-4924-a346-945076a885dc.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_1e35fba6-3262-4924-a346-945076a885dc.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_1e35fba6-3262-4924-a346-945076a885dc.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_2309df1f-34e9-46ee-8f78-888a17023416.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_2309df1f-34e9-46ee-8f78-888a17023416.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_2309df1f-34e9-46ee-8f78-888a17023416.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_356e3339-1593-4b18-bc19-c008b06c9027.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_356e3339-1593-4b18-bc19-c008b06c9027.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_356e3339-1593-4b18-bc19-c008b06c9027.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_40436aab-e0f8-44c2-b75e-f89a71b5b923.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_40436aab-e0f8-44c2-b75e-f89a71b5b923.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_40436aab-e0f8-44c2-b75e-f89a71b5b923.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_4224a5ea-2104-4078-9175-00ddcf6d5fd0.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_4224a5ea-2104-4078-9175-00ddcf6d5fd0.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_4224a5ea-2104-4078-9175-00ddcf6d5fd0.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_64e11385-5666-4fcc-87cb-ee88a02a09f8.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_64e11385-5666-4fcc-87cb-ee88a02a09f8.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_64e11385-5666-4fcc-87cb-ee88a02a09f8.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_77e35429-08ff-4220-8f76-4589df5d86e5.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_77e35429-08ff-4220-8f76-4589df5d86e5.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_77e35429-08ff-4220-8f76-4589df5d86e5.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_9e740ac2-787c-4f89-9725-e6fb2680bd49.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_9e740ac2-787c-4f89-9725-e6fb2680bd49.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_9e740ac2-787c-4f89-9725-e6fb2680bd49.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_a15125e6-7cbe-46e4-8790-c378f65cc01f.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_a15125e6-7cbe-46e4-8790-c378f65cc01f.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_a15125e6-7cbe-46e4-8790-c378f65cc01f.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_a58f5daa-be6d-4a5c-b325-c76338325cbb.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_a58f5daa-be6d-4a5c-b325-c76338325cbb.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_a58f5daa-be6d-4a5c-b325-c76338325cbb.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_bc065443-8f20-4d40-a7f1-54b217c4ecd1.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_bc065443-8f20-4d40-a7f1-54b217c4ecd1.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_bc065443-8f20-4d40-a7f1-54b217c4ecd1.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_c68ab841-2a93-45d8-af66-d634736f52fd.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_c68ab841-2a93-45d8-af66-d634736f52fd.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_c68ab841-2a93-45d8-af66-d634736f52fd.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_d62e6734-4935-4f0a-ac8a-9d1ea3f4342d.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "robust_upload_rank_d62e6734-4935-4f0a-ac8a-9d1ea3f4342d.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robust_upload_rank_d62e6734-4935-4f0a-ac8a-9d1ea3f4342d.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_resources",
+      "passed": true,
+      "detail": {
+        "gallery_rows": 8065,
+        "frozen_dim": 512,
+        "projection_dim": 128
+      }
+    },
+    {
+      "check": "epoch15_catalog_0_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_0_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_350_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_350_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_701_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_701_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_1051_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_1051_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_1402_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_1402_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_1753_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_1753_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_2103_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_2103_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_2454_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_2454_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_2804_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_2804_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_3155_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_3155_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_3506_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_3506_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_3856_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_3856_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_4207_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_4207_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_4557_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_4557_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_4908_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_4908_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_5259_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_5259_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_5609_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_5609_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_5960_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_5960_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_6310_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_6310_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_6661_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_6661_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_7012_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_7012_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_7362_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_7362_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_7713_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_7713_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_8064_projection",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_catalog_8064_frozen",
+      "passed": true,
+      "detail": "Top 10 IDs, metadata, ranks and float cosine values identical; source article excluded."
+    },
+    {
+      "check": "epoch15_upload_1e35fba6-3262-4924-a346-945076a885dc.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_1e35fba6-3262-4924-a346-945076a885dc.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_1e35fba6-3262-4924-a346-945076a885dc.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_2309df1f-34e9-46ee-8f78-888a17023416.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_2309df1f-34e9-46ee-8f78-888a17023416.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_2309df1f-34e9-46ee-8f78-888a17023416.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_356e3339-1593-4b18-bc19-c008b06c9027.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_356e3339-1593-4b18-bc19-c008b06c9027.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_356e3339-1593-4b18-bc19-c008b06c9027.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_40436aab-e0f8-44c2-b75e-f89a71b5b923.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_40436aab-e0f8-44c2-b75e-f89a71b5b923.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_40436aab-e0f8-44c2-b75e-f89a71b5b923.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_4224a5ea-2104-4078-9175-00ddcf6d5fd0.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_4224a5ea-2104-4078-9175-00ddcf6d5fd0.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_4224a5ea-2104-4078-9175-00ddcf6d5fd0.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_64e11385-5666-4fcc-87cb-ee88a02a09f8.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_64e11385-5666-4fcc-87cb-ee88a02a09f8.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_64e11385-5666-4fcc-87cb-ee88a02a09f8.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_77e35429-08ff-4220-8f76-4589df5d86e5.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_77e35429-08ff-4220-8f76-4589df5d86e5.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_77e35429-08ff-4220-8f76-4589df5d86e5.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_9e740ac2-787c-4f89-9725-e6fb2680bd49.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_9e740ac2-787c-4f89-9725-e6fb2680bd49.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_9e740ac2-787c-4f89-9725-e6fb2680bd49.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_a15125e6-7cbe-46e4-8790-c378f65cc01f.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_a15125e6-7cbe-46e4-8790-c378f65cc01f.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_a15125e6-7cbe-46e4-8790-c378f65cc01f.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_a58f5daa-be6d-4a5c-b325-c76338325cbb.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_a58f5daa-be6d-4a5c-b325-c76338325cbb.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_a58f5daa-be6d-4a5c-b325-c76338325cbb.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_bc065443-8f20-4d40-a7f1-54b217c4ecd1.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_bc065443-8f20-4d40-a7f1-54b217c4ecd1.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_bc065443-8f20-4d40-a7f1-54b217c4ecd1.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_c68ab841-2a93-45d8-af66-d634736f52fd.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_c68ab841-2a93-45d8-af66-d634736f52fd.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_c68ab841-2a93-45d8-af66-d634736f52fd.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_d62e6734-4935-4f0a-ac8a-9d1ea3f4342d.jpg",
+      "passed": true,
+      "detail": "Exact 512D/128D vectors under the same CPU runtime."
+    },
+    {
+      "check": "epoch15_upload_rank_d62e6734-4935-4f0a-ac8a-9d1ea3f4342d.jpg_0",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "epoch15_upload_rank_d62e6734-4935-4f0a-ac8a-9d1ea3f4342d.jpg_1",
+      "passed": true,
+      "detail": "Top 10 and cosine values identical; external query has no known family label."
+    },
+    {
+      "check": "robustness_transform_clean",
+      "passed": true,
+      "detail": "Same pixels and dimensions, including preserved random-state behavior."
+    },
+    {
+      "check": "robustness_transform_lighting",
+      "passed": true,
+      "detail": "Same pixels and dimensions, including preserved random-state behavior."
+    },
+    {
+      "check": "robustness_transform_rotation",
+      "passed": true,
+      "detail": "Same pixels and dimensions, including preserved random-state behavior."
+    },
+    {
+      "check": "robustness_transform_crop",
+      "passed": true,
+      "detail": "Same pixels and dimensions, including preserved random-state behavior."
+    },
+    {
+      "check": "robustness_transform_blur",
+      "passed": true,
+      "detail": "Same pixels and dimensions, including preserved random-state behavior."
+    },
+    {
+      "check": "robustness_transform_perspective",
+      "passed": true,
+      "detail": "Same pixels and dimensions, including preserved random-state behavior."
+    },
+    {
+      "check": "family_sampler",
+      "passed": true,
+      "detail": {
+        "batches": 2
+      }
+    },
+    {
+      "check": "hard_triplets",
+      "passed": true,
+      "detail": "Positive and hard-negative indices unchanged."
+    },
+    {
+      "check": "augmented_family_sampler",
+      "passed": true,
+      "detail": {
+        "batches": 2
+      }
+    },
+    {
+      "check": "metric_math",
+      "passed": true,
+      "detail": "Same rankings and metric values on a bounded normalized example."
+    },
+    {
+      "check": "upload_rejection_empty",
+      "passed": true,
+      "detail": [
+        "Upload must be a nonempty JPG/PNG no larger than 10 MB.",
+        "Upload must be a nonempty JPG/PNG no larger than 10 MB."
+      ]
+    },
+    {
+      "check": "upload_rejection_invalid",
+      "passed": true,
+      "detail": [
+        "The uploaded image cannot be decoded safely.",
+        "The uploaded image cannot be decoded safely."
+      ]
+    },
+    {
+      "check": "upload_rejection_oversized",
+      "passed": true,
+      "detail": [
+        "Upload must be a nonempty JPG/PNG no larger than 10 MB.",
+        "Upload must be a nonempty JPG/PNG no larger than 10 MB."
+      ]
+    },
+    {
+      "check": "compatibility_import_cache_train_embeddings",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "ProductImages",
+          "make_loader",
+          "load_encoder",
+          "encode_batch",
+          "benchmark",
+          "save_progress",
+          "build_cache",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_continue_projection_head",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "observe_score",
+          "save_checkpoint",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_data",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "load_manifest",
+          "image_path",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_demo_app",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "has_catalog_metadata",
+          "ensure_catalog_metadata",
+          "cached_resources",
+          "uploaded_query",
+          "show_local_image",
+          "article_name",
+          "show_results",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_demo_retrieval",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "validate_gallery_rows",
+          "validate_embeddings",
+          "rank_results",
+          "read_uploaded_image",
+          "DemoResources",
+          "_sha256",
+          "validate_gallery_files",
+          "load_demo"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_evaluate_bulk_upload",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "check_assets",
+          "load_labels",
+          "thumbnail",
+          "write_html",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_evaluate_query_robustness",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "stable_seed",
+          "sample_queries",
+          "make_query_image",
+          "load_validation_assets",
+          "load_models",
+          "query_tensor",
+          "encode_queries",
+          "load_query_rankings",
+          "load_reusable_run",
+          "save_preview",
+          "print_summary",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_evaluate_robust_head_test",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "read_inputs",
+          "make_comparison",
+          "print_comparison",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_evaluate_test",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "validate_cache",
+          "get_test_features",
+          "print_comparison",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_report_validation",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "load_rankings",
+          "plot_history",
+          "plot_comparison",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_resnet_baseline",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "ValidationImages",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_resnet_smoke",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_retrieval_metrics",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "metrics_from_rankings",
+          "evaluate_queries",
+          "evaluate"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_train_projection_head",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "ProjectionHead",
+          "load_cache",
+          "family_batches",
+          "hard_triplets",
+          "project_validation",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_train_robust_head",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "read_assets",
+          "training_batch",
+          "batches",
+          "validate_head",
+          "robustness_mean",
+          "save_checkpoint",
+          "main"
+        ]
+      }
+    },
+    {
+      "check": "compatibility_import_visual_examples",
+      "passed": true,
+      "detail": {
+        "original_functions_classes": [
+          "save_examples"
+        ]
+      }
+    },
+    {
+      "check": "cli_help_cache_train_embeddings.py",
+      "passed": true,
+      "detail": {
+        "exit_code": 0
+      }
+    },
+    {
+      "check": "cli_help_evaluate_query_robustness.py",
+      "passed": true,
+      "detail": {
+        "exit_code": 0
+      }
+    },
+    {
+      "check": "cli_help_train_robust_head.py",
+      "passed": true,
+      "detail": {
+        "exit_code": 0
+      }
+    },
+    {
+      "check": "cli_help_evaluate_bulk_upload.py",
+      "passed": true,
+      "detail": {
+        "exit_code": 0
+      }
+    },
+    {
+      "check": "cli_help_evaluate_robust_head_test.py",
+      "passed": true,
+      "detail": {
+        "exit_code": 0
+      }
+    }
+  ],
+  "passed": true,
+  "elapsed_seconds": 72.53866449999623,
+  "limits": [
+    "No model training or full 8,065-query evaluation repeated.",
+    "Inference equality is measured on 24 catalog queries and 13 unlabelled uploads per head.",
+    "Existing models, galleries, checkpoints and reports were read only; no cache regeneration.",
+    "Original local model/data paths were supplied only in this scratch verifier; published project paths remain clone-relative."
+  ]
+}
