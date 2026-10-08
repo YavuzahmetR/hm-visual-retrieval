@@ -3,12 +3,12 @@
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+.ipynb_checkpoints/
 
 artifacts/
 results/
 model_cache/
 original_notebook/
-DEVAM.ipynb
 
 project_config.json
 *.local.json
@@ -18,3 +18,8 @@ project_config.json
 *.pth
 *.pt
 !models/projection_head_epoch15.pt
+!models/projection_head_robust.pt
+
+*.log
+Thumbs.db
+.DS_Store

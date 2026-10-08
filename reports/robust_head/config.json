@@ -1,0 +1,75 @@
+{
+  "output": "results/robust_head_v1",
+  "benchmark": "results/query_robustness_full_v1",
+  "epochs": 5,
+  "patience": 2,
+  "families_per_batch": 64,
+  "lr": 0.0001,
+  "seed": 42,
+  "pilot_batches": 0,
+  "check_only": false,
+  "head_dim": 128,
+  "parent_epoch": 15,
+  "parent_sha256": "375f8d7d9d96974a6cb0df6df3c71925ebae168a5fe683d5e8389637c51cd6f4",
+  "encoder_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+  "encoder_frozen": true,
+  "bn_statistics": "eval/fixed",
+  "preprocessing": "ResNet18_Weights.IMAGENET1K_V1.transforms()",
+  "precision": "float32",
+  "margin": 0.2,
+  "weight_decay": 0.0001,
+  "augmentation": {
+    "clean_probability": 0.3,
+    "changes": {
+      "lighting": {
+        "brightness": [
+          0.7,
+          1.3
+        ],
+        "contrast": [
+          0.85,
+          1.15
+        ]
+      },
+      "rotation": {
+        "degrees": 15,
+        "fill": [
+          245,
+          245,
+          245
+        ]
+      },
+      "crop": {
+        "side_fraction": [
+          0.9,
+          1.0
+        ],
+        "preserve_aspect_ratio": true
+      },
+      "blur": {
+        "kernel_size": 5,
+        "sigma": [
+          0.5,
+          1.2
+        ]
+      },
+      "perspective": {
+        "distortion_scale": 0.1,
+        "p": 1.0,
+        "fill": [
+          245,
+          245,
+          245
+        ]
+      }
+    },
+    "second_change_probability_given_augmented": 0.25
+  },
+  "selection": "maximize mean transformed validation mAP@10, subject to clean all-image mAP@10 >= epoch15",
+  "minimum_clean_map10": 0.4164472265249891,
+  "resume_mode": "epoch15 weights, new AdamW",
+  "comparison_limit": "No unaugmented continuation control; augmentation effect is not isolated.",
+  "torch_version": "2.6.0+cu124",
+  "benchmark_query_sha256": "16659e850d671a58701f554a291230242dce2fd9c6d43ae8b1e9567cfcea757f",
+  "pilot": false
+}

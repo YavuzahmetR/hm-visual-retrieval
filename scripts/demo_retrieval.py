@@ -1,4 +1,4 @@
-"""Inference and cosine search for the existing epoch-15 model and test gallery."""
+"""Inference and cached search for the selected robust head or original epoch-15 head."""
 
 import hashlib
 import io
@@ -12,15 +12,21 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import torch
+from data import PROJECT_DIR, load_manifest
 from PIL import Image, ImageOps, UnidentifiedImageError
 from torch import nn
 from torch.nn import functional as F
 from torchvision.models import ResNet18_Weights, resnet18
-
-from data import PROJECT_DIR, load_manifest
 from train_projection_head import ProjectionHead
 
 HEAD_SHA256 = "375f8d7d9d96974a6cb0df6df3c71925ebae168a5fe683d5e8389637c51cd6f4"
+ROBUST_HEAD_SHA256 = "d5b8a02a6e255e6ff231ce54241e615d40d8ac568baeb85d6e2ee039275e6ddd"
+ROBUST_SOURCE_SHA256 = (
+    "a5568a607380831e8a58366de548b5149b346ecf8ecce82c54472706f1167d7d"
+)
+ROBUST_GALLERY_SHA256 = (
+    "3be7395c5ce314f8e76b87189f742c946bddb116c2825583c756d18e90c2b743"
+)
 RESNET_SHA256 = "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec"
 GALLERY_SHA256 = {
     "frozen_embeddings.npy": "4fe53e7ed666af4f56387819118c72735248e791b48041b3516e18643334dd21",
@@ -134,6 +140,7 @@ class DemoResources:
     head: nn.Module
     transform: Callable[[Image.Image], torch.Tensor]
     device: str
+    head_version: str = "epoch15"
     _inference_lock: threading.Lock = field(default_factory=threading.Lock, repr=False)
 
     def search_catalog(
@@ -168,12 +175,14 @@ def validate_gallery_files(cache_dir: Path) -> None:
             raise ValueError(f"{name} differs from the saved epoch-15 demo gallery.")
 
 
-def load_demo(device: str = "cpu") -> DemoResources:
+def load_demo(device: str = "cpu", head_version: str = "robust") -> DemoResources:
     """Load local assets only; never download weights or rebuild missing caches."""
     if device not in {"cpu", "cuda"}:
         raise ValueError("Choose cpu or cuda for demo inference.")
     if device == "cuda" and not torch.cuda.is_available():
         raise RuntimeError("CUDA is unavailable; choose CPU for the demo.")
+    if head_version not in {"robust", "epoch15"}:
+        raise ValueError("Choose robust or epoch15 for the projection head.")
 
     manifest, data_root = load_manifest()
     test_catalog = manifest.loc[manifest["split"] == "test"].reset_index(drop=True)
@@ -210,18 +219,26 @@ def load_demo(device: str = "cpu") -> DemoResources:
     frozen = np.load(
         cache_dir / "frozen_embeddings.npy", mmap_mode="r", allow_pickle=False
     )
-    projected = np.load(
-        cache_dir / "projection_embeddings.npy", mmap_mode="r", allow_pickle=False
-    )
     validate_embeddings(frozen, len(rows), 512)
-    validate_embeddings(projected, len(rows), 128)
-    # Pin the completed experiment's arrays, including every unsampled row.
-    validate_gallery_files(cache_dir)
+    if (
+        _sha256(cache_dir / "frozen_embeddings.npy")
+        != GALLERY_SHA256["frozen_embeddings.npy"]
+    ):
+        raise ValueError("Frozen gallery differs from the original encoder cache.")
 
     weights_path = PROJECT_DIR / "model_cache/hub/checkpoints/resnet18-f37072fd.pth"
-    head_path = PROJECT_DIR / "models/projection_head_epoch15.pt"
+    head_path = (
+        PROJECT_DIR
+        / "models"
+        / (
+            "projection_head_robust.pt"
+            if head_version == "robust"
+            else "projection_head_epoch15.pt"
+        )
+    )
     weights_hash, head_hash = _sha256(weights_path), _sha256(head_path)
-    if weights_hash != RESNET_SHA256 or head_hash != HEAD_SHA256:
+    expected_head_hash = ROBUST_HEAD_SHA256 if head_version == "robust" else HEAD_SHA256
+    if weights_hash != RESNET_SHA256 or head_hash != expected_head_hash:
         raise ValueError("Local encoder/head weights differ from the published model.")
     protocol = (
         "ResNet18 ImageNet1K V1|weights.transforms|float32|L2|"
@@ -237,18 +254,49 @@ def load_demo(device: str = "cpu") -> DemoResources:
         raise ValueError(
             "Frozen cache encoder, preprocessing, environment or rows differ."
         )
-    report = json.loads((cache_dir / "metrics.json").read_text("utf-8"))
-    selection = report.get("selection", {})
-    if (
-        report.get("split") != "test"
-        or selection.get("epoch") != 15
-        or selection.get("checkpoint_sha256") != head_hash
-    ):
-        raise ValueError("Saved test report does not match the selected checkpoint.")
-
     checkpoint = torch.load(head_path, map_location="cpu", weights_only=True)
-    if checkpoint.get("epoch") != 15:
-        raise ValueError("Expected the validation-selected epoch-15 checkpoint.")
+    if head_version == "robust":
+        projection_dir = PROJECT_DIR / "results/robust_head_v1/test_evaluation"
+        robust_rows = pd.read_csv(projection_dir / "embedding_rows.csv", dtype=str)
+        validate_gallery_rows(robust_rows, expected)
+        report = json.loads((projection_dir / "metrics.json").read_text("utf-8"))
+        selection = report.get("selection", {})
+        if (
+            checkpoint.get("format") != "robust_head_v1"
+            or checkpoint.get("encoder_sha256") != weights_hash
+            or checkpoint.get("preprocessing")
+            != "ResNet18_Weights.IMAGENET1K_V1.transforms()"
+            or checkpoint.get("source_checkpoint_sha256") != ROBUST_SOURCE_SHA256
+            or checkpoint.get("epoch") != 5
+            or checkpoint.get("parent_epoch") != 15
+            or report.get("split") != "test"
+            or report.get("queries") != len(rows)
+            or report.get("cache_signature") != signature
+            or selection.get("checkpoint_sha256") != ROBUST_SOURCE_SHA256
+            or selection.get("additional_epoch") != checkpoint["epoch"]
+        ):
+            raise ValueError("Robust head and its saved test gallery do not match.")
+        expected_projection_hash = ROBUST_GALLERY_SHA256
+    else:
+        projection_dir = cache_dir
+        report = json.loads((cache_dir / "metrics.json").read_text("utf-8"))
+        selection = report.get("selection", {})
+        if (
+            checkpoint.get("epoch") != 15
+            or report.get("split") != "test"
+            or selection.get("epoch") != 15
+            or selection.get("checkpoint_sha256") != head_hash
+        ):
+            raise ValueError("Saved test report does not match the epoch-15 head.")
+        expected_projection_hash = GALLERY_SHA256["projection_embeddings.npy"]
+
+    projection_path = projection_dir / "projection_embeddings.npy"
+    if _sha256(projection_path) != expected_projection_hash:
+        raise ValueError(
+            "Projection gallery differs from the selected head's saved cache."
+        )
+    projected = np.load(projection_path, mmap_mode="r", allow_pickle=False)
+    validate_embeddings(projected, len(rows), 128)
     head = ProjectionHead()
     head.load_state_dict(checkpoint["state_dict"], strict=True)
     head.requires_grad_(False).eval()
@@ -279,4 +327,5 @@ def load_demo(device: str = "cpu") -> DemoResources:
         head=head,
         transform=ResNet18_Weights.IMAGENET1K_V1.transforms(),
         device=device,
+        head_version=head_version,
     )

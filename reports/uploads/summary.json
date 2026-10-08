@@ -1,0 +1,12 @@
+{
+  "photos": 13,
+  "valid_photos_per_model": 13,
+  "skipped_photos_per_model": 0,
+  "labelled": false,
+  "family_retrieval_metrics_calculated": false,
+  "same_top1_result": 9,
+  "note": "Ranking agreement is not accuracy. Unlabelled examples are qualitative only.",
+  "epoch15_checkpoint_sha256": "375f8d7d9d96974a6cb0df6df3c71925ebae168a5fe683d5e8389637c51cd6f4",
+  "robust_source_checkpoint_sha256": "a5568a607380831e8a58366de548b5149b346ecf8ecce82c54472706f1167d7d",
+  "top_k": 10
+}

@@ -4,12 +4,11 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import torch
-from PIL import Image
-
 from data import image_path, load_manifest
 from demo_retrieval import DemoResources, load_demo, rank_results, read_uploaded_image
+from PIL import Image
 
-CATALOG_SCHEMA = 2
+CATALOG_SCHEMA = 3
 CATALOG_METADATA = (
     "prod_name",
     "colour_group_name",
@@ -44,22 +43,28 @@ def ensure_catalog_metadata(resources: DemoResources) -> DemoResources:
 
 
 @st.cache_resource(
-    max_entries=2,
+    max_entries=4,
     show_spinner="Loading model and saved gallery...",
     validate=has_catalog_metadata,
 )
-def cached_resources(device: str, catalog_schema: int) -> DemoResources:
+def cached_resources(
+    device: str, head_version: str, catalog_schema: int
+) -> DemoResources:
     """Cache the selected model and gallery with product names and descriptions."""
     if catalog_schema != CATALOG_SCHEMA:
         raise ValueError("Unsupported demo catalog schema.")
-    return ensure_catalog_metadata(load_demo(device=device))
+    return ensure_catalog_metadata(load_demo(device=device, head_version=head_version))
 
 
 @st.cache_data(max_entries=8, show_spinner="Encoding uploaded image...")
 def uploaded_query(
-    payload: bytes, device: str, _resources: DemoResources
+    payload: bytes, device: str, head_version: str, _resources: DemoResources
 ) -> tuple[Image.Image, tuple[np.ndarray, np.ndarray]]:
-    # Include device in the key; resource objects do not need to be pickled.
+    # Model değişince eski head'in sorgu embedding'i cache'ten gelmemeli.
+    if _resources.head_version != head_version:
+        raise ValueError(
+            "Upload cache key does not match the selected projection head."
+        )
     image = read_uploaded_image(payload)
     embeddings = _resources.embed_image(image)
     # Keep the cached preview small; encoding uses the full decoded image.
@@ -132,13 +137,22 @@ def main() -> None:
         mode = st.radio(
             "Retrieval model", ["Projection head", "Frozen ResNet18", "Compare both"]
         )
+        head_choice = st.selectbox(
+            "Projection head version",
+            ["Augmented head (selected)", "Epoch 15 head"],
+        )
+        head_version = (
+            "robust" if head_choice == "Augmented head (selected)" else "epoch15"
+        )
         source = st.radio("Query source", ["Catalog item", "Upload a photo"])
         st.caption(
             "Cosine similarity is a ranking score, not a probability of correctness."
         )
 
     try:
-        resources = cached_resources(device, catalog_schema=CATALOG_SCHEMA)
+        resources = cached_resources(
+            device, head_version, catalog_schema=CATALOG_SCHEMA
+        )
     except (OSError, ValueError, RuntimeError) as error:
         st.error(f"Cannot load the local demo assets: {error}")
         st.info(
@@ -147,7 +161,7 @@ def main() -> None:
         st.stop()
 
     st.caption(
-        f"Gallery: {len(resources.catalog):,} test products · ImageNet ResNet18 · projection head selected at epoch 15"
+        f"Gallery: {len(resources.catalog):,} test products · Frozen ImageNet ResNet18 · {head_choice}"
     )
     query_family = None
     article_id = None
@@ -184,7 +198,9 @@ def main() -> None:
             st.stop()
         try:
             payload = upload.getvalue()
-            preview, query_embeddings = uploaded_query(payload, device, resources)
+            preview, query_embeddings = uploaded_query(
+                payload, device, head_version, resources
+            )
         except (OSError, ValueError, RuntimeError) as error:
             st.error(f"Cannot read or encode this image: {error}")
             st.stop()
@@ -241,7 +257,11 @@ def main() -> None:
             st.error(f"Search could not complete: {error}")
             st.stop()
         label = (
-            "Learned projection head · 128D"
+            (
+                "Augmented projection head · 128D"
+                if head_version == "robust"
+                else "Epoch 15 projection head · 128D"
+            )
             if model_mode == "projection"
             else "Frozen ResNet18 baseline · 512D"
         )

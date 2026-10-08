@@ -1,0 +1,67 @@
+{
+  "split": "test",
+  "queries": 8065,
+  "product_families": 2306,
+  "gallery": "complete test split; query itself excluded",
+  "relevance": "same product_code, different article_id",
+  "ap_denominator": "min(K, number of relevant gallery images)",
+  "test_previously_evaluated": true,
+  "note": "Final comparison after validation selection; do not tune from test scores.",
+  "selection": {
+    "run": "robust_head_v1",
+    "parent_epoch": 15,
+    "additional_epoch": 5,
+    "criterion": "maximize mean transformed validation mAP@10, subject to clean all-image mAP@10 >= epoch15",
+    "validation_map@10": 0.4229182513897005,
+    "validation_robustness_mean_map@10": 0.41688415980571014,
+    "checkpoint_sha256": "a5568a607380831e8a58366de548b5149b346ecf8ecce82c54472706f1167d7d"
+  },
+  "cache_signature": "be5b353e68238b78e9ceb0c37bed0fddd568b653aeecd81766ddf8f46ae1d612",
+  "frozen_metrics": {
+    "recall@1": 0.13425581431810915,
+    "hit_rate@1": 0.3655300681959082,
+    "map@1": 0.3655300681959082,
+    "recall@5": 0.2738553876785716,
+    "hit_rate@5": 0.5475511469311841,
+    "map@5": 0.27390848660191497,
+    "recall@10": 0.341722368368805,
+    "hit_rate@10": 0.6159950402975821,
+    "map@10": 0.26277294987017336
+  },
+  "epoch15_metrics": {
+    "recall@1": 0.21173678478906324,
+    "hit_rate@1": 0.5075015499070056,
+    "map@1": 0.5075015499070056,
+    "recall@5": 0.41561416290191644,
+    "hit_rate@5": 0.7048977061376317,
+    "map@5": 0.41567434731693875,
+    "recall@10": 0.5138531193332045,
+    "hit_rate@10": 0.7759454432734036,
+    "map@10": 0.4098227244561345
+  },
+  "candidate_metrics": {
+    "recall@1": 0.21464791566628616,
+    "hit_rate@1": 0.5123372597644141,
+    "map@1": 0.5123372597644141,
+    "recall@5": 0.42509022537047414,
+    "hit_rate@5": 0.7148171109733416,
+    "map@5": 0.42271612592133356,
+    "recall@10": 0.5234849226263208,
+    "hit_rate@10": 0.7888406695598265,
+    "map@10": 0.4170737110428199
+  },
+  "metric_deltas_vs_epoch15": {
+    "recall@1": 0.002911130877222917,
+    "hit_rate@1": 0.004835709857408554,
+    "map@1": 0.004835709857408554,
+    "recall@5": 0.0094760624685577,
+    "hit_rate@5": 0.009919404835709855,
+    "map@5": 0.0070417786043948105,
+    "recall@10": 0.009631803293116303,
+    "hit_rate@10": 0.012895226286422812,
+    "map@10": 0.007250986586685382
+  },
+  "torch_version": "2.6.0+cu124",
+  "projection_device": "cuda",
+  "seconds": 5.682079199992586
+}
