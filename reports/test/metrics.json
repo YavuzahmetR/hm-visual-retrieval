@@ -9,8 +9,7 @@
     "run": "projection_head_v2",
     "epoch": 15,
     "criterion": "validation map@10",
-    "validation_map@10": 0.4164472265249891,
-    "checkpoint_sha256": "375f8d7d9d96974a6cb0df6df3c71925ebae168a5fe683d5e8389637c51cd6f4"
+    "validation_map@10": 0.4164472265249891
   },
   "frozen_metrics": {
     "recall@1": 0.13425581431810915,

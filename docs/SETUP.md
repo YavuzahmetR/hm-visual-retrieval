@@ -15,10 +15,10 @@ cp project_config.example.json project_config.json
 ```
 
 Point `data_root` to the existing images, laid out as
-`<data_root>/images/010/0108775015.jpg`. For this completed local project, keep the
-current environment and extracted data; raw CSVs and the ZIP need not be
-downloaded again. `requirements-lock.txt` records the development environment,
-including notebook/development dependencies beyond the runtime requirements. Automated test/lint tools were removed on 2026-10-09; it is a filtered historical environment record, not a minimal runtime lock. The untouched original is recoverable from the source commit.
+`<data_root>/images/010/0108775015.jpg`. Existing extracted images can be reused.
+`requirements-lock.txt` records the development environment, including notebook
+dependencies. For the demo, install the runtime packages from `requirements.txt`
+and the pinned PyTorch/Torchvision versions above.
 
 The demo needs these local assets:
 
@@ -31,10 +31,9 @@ The demo needs these local assets:
 - `results/robust_head_v1/test_evaluation/`: selected head's 128D features,
   row CSV and completed metrics.
 
-Hashes, dimensions, ID order and encoder/preprocessing metadata are checked.
-The demo does not download weights or rebuild missing galleries. Dataset images,
-manifest and large caches are excluded from Git; a fresh checkout alone cannot
-run the local demo.
+The model and gallery must match in row order, dimensions and preprocessing.
+The loader checks compatibility before inference. Dataset images, manifest and
+large caches are excluded from Git; a fresh checkout alone cannot run the demo.
 
 For data preparation on a new machine, run only code cells 2 and 4 of
 `notebooks/kaggle_data_preparation.ipynb` on Kaggle with the competition data.

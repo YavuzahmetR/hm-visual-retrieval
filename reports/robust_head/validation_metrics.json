@@ -91,7 +91,5 @@
   ],
   "robustness_mean_map10": 0.41688415980571014,
   "selection": "maximize mean transformed validation mAP@10, subject to clean all-image mAP@10 >= epoch15",
-  "checkpoint_sha256": "d5b8a02a6e255e6ff231ce54241e615d40d8ac568baeb85d6e2ee039275e6ddd",
-  "source_checkpoint_sha256": "a5568a607380831e8a58366de548b5149b346ecf8ecce82c54472706f1167d7d",
   "note": "Controlled validation robustness, not real-world upload accuracy. No unaugmented continuation control."
 }

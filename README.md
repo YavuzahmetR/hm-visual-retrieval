@@ -29,10 +29,10 @@ flowchart LR
     C --> D[Selected linear head: normalized 128D]
     D --> E[Cosine ranking against saved gallery]
     E --> F[Top products and metadata]
-    G[Manifest, cache metadata and SHA256 checks] --> E
+    G[Compatible model and gallery files] --> E
 ```
 
-Catalog queries use already saved embeddings and exclude their own article. Uploads encode only the new query; the Streamlit demo does not rebuild galleries or download weights. The loader checks the manifest, weights, row order, dimensions, cache metadata and a small head/cache sample before inference. These checks protect the saved experiment; they do not alone establish scientific validity.
+Catalog queries use saved embeddings and exclude their own article. Uploads encode only the new query. Before inference, the loader checks that the model, gallery, row order and dimensions are compatible. Missing or incompatible files produce an error; the demo does not download weights or rebuild galleries.
 
 The bulk command accepts a separately supplied compatible head and projects the existing frozen gallery in memory. It does not overwrite published gallery files. Detailed training, model selection and robustness protocols are in [EXPERIMENTS.md](docs/EXPERIMENTS.md).
 
@@ -58,7 +58,7 @@ Entry points load the implementation from `src/visual_retrieval/`.
 
 The source dataset is Kaggle's H&M Personalized Fashion Recommendations. Images, the manifest and large feature caches are local assets excluded from Git. A fresh checkout alone cannot run the complete demo. [SETUP.md](docs/SETUP.md) lists every required asset and the paths expected by the code.
 
-Committed checkpoints, report files, screenshots and notebooks keep their original bytes. SmallCNN was a separate classification exploration; its weights are not used by retrieval and its accuracy/F1 are not compared directly with retrieval mAP.
+Committed checkpoints contain the selected inference weights. Reports record the measured metrics, settings and limitations. SmallCNN was a separate classification exploration; its weights are not used by retrieval and its accuracy/F1 are not compared directly with retrieval mAP.
 
 ## Setup
 
@@ -71,7 +71,7 @@ python -m venv .venv
 cp project_config.example.json project_config.json
 ```
 
-Set `data_root` and `manifest` to your existing local assets. The recorded gallery is bound to PyTorch 2.6.0+cu124 and the original encoder/preprocessing signature; do not present an arbitrary newer environment as an equivalent historical run. CPU inference is supported in that runtime; training/extraction scripts require CUDA.
+Set `data_root` and `manifest` to your local assets. Use PyTorch 2.6.0+cu124 for the saved gallery; another runtime can require separately reproduced gallery files. CPU inference is supported; training/extraction scripts require CUDA.
 
 The recorded development environment is in `requirements-lock.txt`; it includes notebook dependencies and is not a minimal runtime lock. [SETUP.md](docs/SETUP.md) preserves the full asset acquisition instructions and original measured environment.
 

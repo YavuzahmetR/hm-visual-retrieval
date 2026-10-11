@@ -17,9 +17,8 @@ when the code changes, stop it with Ctrl+C and restart it.
   Catalog queries exclude their own article ID, preserving leading zeros.
 
 CPU is the default. CUDA accelerates uploaded-photo encoding when available;
-catalog search uses saved embeddings. Models and galleries are cached per
-device and head version. Uploaded-query caches also distinguish the selected
-head, so switching models cannot reuse the other head's query embedding.
+catalog search uses saved embeddings. Switching heads updates the model and
+query representation used for ranking.
 
 Uploads accept JPEG/PNG up to **10 MB and 20 million pixels**. Images are decoded
 in memory, EXIF orientation is applied, and the original deterministic ImageNet
@@ -89,7 +88,6 @@ If every image fails, `predictions.csv` and `preview.html` are not produced.
 Only verified product-family labels support upload Recall/HitRate/mAP; unlabelled
 photos provide qualitative examples.
 
-Missing or incompatible gallery row order, checkpoint, encoder metadata or cache
-signature stops loading. The demo does not silently regenerate assets.
-The recorded cache uses the saved encoder/preprocessing/runtime signature;
-a different runtime may require separately reproduced caches.
+Missing or incompatible model/gallery files stop loading. The demo does not
+silently regenerate assets. A different PyTorch runtime may require separately
+reproduced gallery files.

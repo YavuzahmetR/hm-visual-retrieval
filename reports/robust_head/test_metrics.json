@@ -13,10 +13,8 @@
     "additional_epoch": 5,
     "criterion": "maximize mean transformed validation mAP@10, subject to clean all-image mAP@10 >= epoch15",
     "validation_map@10": 0.4229182513897005,
-    "validation_robustness_mean_map@10": 0.41688415980571014,
-    "checkpoint_sha256": "a5568a607380831e8a58366de548b5149b346ecf8ecce82c54472706f1167d7d"
+    "validation_robustness_mean_map@10": 0.41688415980571014
   },
-  "cache_signature": "be5b353e68238b78e9ceb0c37bed0fddd568b653aeecd81766ddf8f46ae1d612",
   "frozen_metrics": {
     "recall@1": 0.13425581431810915,
     "hit_rate@1": 0.3655300681959082,
