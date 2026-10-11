@@ -2,67 +2,89 @@
 
 ## Overview
 
-Find different variants of the same product family using a catalog item or an uploaded photo. A frozen ImageNet ResNet18 produces normalized 512D features; a learned 512 → 128 projection head adapts them to family retrieval. Ranking uses cosine similarity.
+Find other variants of a catalog product, using its image or an uploaded photo.
+A pretrained **ResNet18** extracts visual features; a small learned projection
+head adapts them to product-family retrieval. Cosine similarity ranks the gallery.
 
-The selected model is an augmentation-trained continuation of the epoch-15 head. The CNN remains frozen. The Streamlit demo defaults to this head and keeps epoch 15 and the frozen baseline available for comparison.
+The selected head continues the original epoch-15 head with mild image
+transformations. **ResNet18 stays frozen** throughout. The local Streamlit demo
+also offers the original head and the frozen encoder for comparison.
 
-## Scope and limitations
+## How it works
 
-This is a product-family variant retrieval proxy: the same `product_code`, a different `article_id`. It is not personalized recommendation or verified general fashion similarity. Cosine is a ranking score, not a probability; mAP is not classification accuracy.
-
-Results use one family split and bounded training runs. No uncertainty estimate
-or verified external-photo benchmark is provided. Catalog backgrounds, detail
-crops, garment category and colour can affect rankings; wrong matches remain.
-External uploads are exploratory, and improvement on every photo is not
-expected.
-
-Final-block CNN fine-tuning, alternative head dimensions and a labelled external
-query set are possible future experiments. They were not used to select this
-model. Deployment and an independent API are outside the current local demo.
-
-## Architecture and workflow
-
-```mermaid
-flowchart LR
-    A[Catalog article or uploaded JPEG/PNG] --> B[Deterministic ImageNet preprocessing]
-    B --> C[Frozen ResNet18: normalized 512D]
-    C --> D[Selected linear head: normalized 128D]
-    D --> E[Cosine ranking against saved gallery]
-    E --> F[Top products and metadata]
-    G[Compatible model and gallery files] --> E
+```text
+Catalog image / uploaded photo -> ImageNet preprocessing -> frozen ResNet18
+                              -> learned 128D vector -> cosine ranking
+                              -> nearest catalog products
 ```
 
-Catalog queries use saved embeddings and exclude their own article. Uploads encode only the new query. Before inference, the loader checks that the model, gallery, row order and dimensions are compatible. Missing or incompatible files produce an error; the demo does not download weights or rebuild galleries.
+ResNet18 produces normalized 512D vectors. A linear 512 → 128 layer is trained
+with triplet loss: same-family variants are positives, other families negatives.
+Catalog vectors are computed beforehand; an upload needs only a new query vector.
 
-The bulk command accepts a separately supplied compatible head and projects the existing frozen gallery in memory. It does not overwrite published gallery files. Detailed training, model selection and robustness protocols are in [EXPERIMENTS.md](docs/EXPERIMENTS.md).
+## Demo preview
+
+![Uploaded denim shirt and the selected head's results](reports/uploads/denim_shirt.png)
+
+This is an unlabelled external-photo example, not an accuracy measurement.
+[More examples](docs/DEMO.md) include catalog comparison and mismatched results.
+
+## Data and evaluation
+
+The data is Kaggle's **H&M Personalized Fashion Recommendations** catalog.
+The subset contains 23,059 product families with at least two available images.
+Families are assigned to one split with seed 42.
+
+| Split | Images | Product families |
+|---|---:|---:|
+| Train | 64,912 | 18,447 |
+| Validation | 8,110 | 2,306 |
+| Test | 8,065 | 2,306 |
+
+A relevant result has the same `product_code` and a different `article_id`.
+Every test image is a query; the gallery is the full test split, excluding the
+query itself. The model is selected on validation, not test scores.
+
+## Results
+
+| Test metric | Frozen ResNet18 | Epoch-15 head | Selected augmented head |
+|---|---:|---:|---:|
+| mAP@10 | 0.262773 | 0.409823 | **0.417074** |
+| Recall@10 | 0.341722 | 0.513853 | **0.523485** |
+| HitRate@10 | 0.615995 | 0.775945 | **0.788841** |
+
+mAP measures ranking quality; Recall measures the fraction of relevant variants
+retrieved; HitRate measures whether at least one variant appears in the top ten.
+These are not classification accuracy.
+
+The selected head improves mAP@10 by **1.77% relative to epoch 15** and **58.72%
+relative to the frozen baseline**. It retrieves a same-family variant in the top
+ten for **6,362 / 8,065** queries, versus 6,258 for epoch 15.
+
+The original test had already been published before the continuation experiment.
+This comparison reuses that split, rather than providing a new blind test.
+[EXPERIMENTS.md](docs/EXPERIMENTS.md) explains training, selection, controlled
+robustness and the recorded result tables.
 
 ## Project layout
 
-| Directory/file | Purpose |
-| --- | --- |
-| `src/visual_retrieval/` | Data loading, model/head, ranking, evaluation and demo implementation |
-| `scripts/` | Short compatible entry points with explicit imports |
-| `docs/` | Setup, experiment protocols and demo examples |
-| `models/` | Original epoch-15 and selected augmented inference checkpoints |
-| `reports/validation`, `reports/test` | Preserved original experiment reports |
-| `reports/robust_head` | Continuation configuration, history, validation and final test reports |
-| `reports/uploads` | HTML preview, screenshots and qualitative summary |
-| `reports/classification` | Separate SmallCNN/majority-baseline exploration |
-| `notebooks/` | Original Kaggle data preparation and classification exploration |
-| `project_config.example.json` | Copy to local `project_config.json` to point at your assets |
-| `artifacts/`, `results/`, `model_cache/` | Local manifest, experiment caches and weights; ignored by Git |
+| Path | Purpose |
+|---|---|
+| `src/visual_retrieval/` | Image loading, feature extraction, training, ranking and demo |
+| `scripts/` | Commands calling that implementation |
+| `models/` | Original and selected projection-head weights |
+| `reports/` | Measured tables, learning curves and demo previews |
+| `notebooks/` | Kaggle data preparation and separate classification exploration |
+| `project_config.example.json` | Example image and manifest paths |
+| `docs/` | Setup, experiment details and demo instructions |
 
-Entry points load the implementation from `src/visual_retrieval/`.
+The SmallCNN classification exploration is separate from retrieval. Its weights
+are not used by the demo, and its accuracy/F1 cannot be compared with mAP.
 
-## Data and artifacts
+## Setup and usage
 
-The source dataset is Kaggle's H&M Personalized Fashion Recommendations. Images, the manifest and large feature caches are local assets excluded from Git. A fresh checkout alone cannot run the complete demo. [SETUP.md](docs/SETUP.md) lists every required asset and the paths expected by the code.
-
-Committed checkpoints contain the selected inference weights. Reports record the measured metrics, settings and limitations. SmallCNN was a separate classification exploration; its weights are not used by retrieval and its accuracy/F1 are not compared directly with retrieval mAP.
-
-## Setup
-
-Run from the project root in Windows Git Bash:
+The recorded environment uses Python **3.12**, PyTorch **2.6.0+cu124** and
+Torchvision **0.21.0+cu124**. From the root in Windows Git Bash:
 
 ```bash
 python -m venv .venv
@@ -71,82 +93,27 @@ python -m venv .venv
 cp project_config.example.json project_config.json
 ```
 
-Set `data_root` and `manifest` to your local assets. Use PyTorch 2.6.0+cu124 for the saved gallery; another runtime can require separately reproduced gallery files. CPU inference is supported; training/extraction scripts require CUDA.
-
-The recorded development environment is in `requirements-lock.txt`; it includes notebook dependencies and is not a minimal runtime lock. [SETUP.md](docs/SETUP.md) preserves the full asset acquisition instructions and original measured environment.
-
-## Usage
+**A source checkout alone cannot run the demo.** Images, the split manifest,
+ResNet18 weights and saved gallery vectors are excluded from Git because they
+are large local assets. [SETUP.md](docs/SETUP.md) lists their required paths and
+acquisition steps. Point the copied config at your images and manifest.
 
 ```bash
 ./.venv/Scripts/python.exe -m streamlit run ./scripts/demo_app.py --server.address 127.0.0.1 --browser.gatherUsageStats false
 ```
 
-Open [http://localhost:8501](http://localhost:8501). Search catalog products by recorded name, colour, pattern or ID; upload a JPEG/PNG; choose robust/epoch-15 head or compare the chosen head with the frozen baseline. Upload limits are 10 MB and 20 million pixels; images remain in memory.
+Open [http://localhost:8501](http://localhost:8501). Search by product name,
+colour, pattern or ID, or upload a JPEG/PNG. CPU inference is supported; the
+training and extraction scripts require CUDA. Saved galleries must match their
+model, preprocessing and row order; incompatible assets stop loading.
 
-```bash
-./.venv/Scripts/python.exe ./scripts/evaluate_bulk_upload.py \
-  --input results/upload_photos_v1 \
-  --checkpoint models/projection_head_robust.pt \
-  --device cpu --top-k 10 --output results/upload_selected_new
-```
+## Limitations
 
-Use a new/empty output directory or add `--check-only` for asset/label preflight without inference or file creation. Bulk outputs include `summary.json` and `errors.csv`; successful image processing
-also produces `predictions.csv` and `preview.html`. If every image fails, those
-prediction files are absent. Read the valid/skipped counts in the summary. The bulk command's default checkpoint remains epoch 15; the command above explicitly selects the robust head.
-
-[DEMO.md](docs/DEMO.md) preserves catalog and external-upload screenshots, valid/mixed/failure examples and the saved HTML preview. [EXPERIMENTS.md](docs/EXPERIMENTS.md) preserves all scientific reproduction commands and the verified-label CSV schema. There is no independent HTTP endpoint in this project. Missing or incompatible
-manifest, model or cache metadata stops loading; the demo does not silently
-rebuild galleries.
-
-## Evaluation protocol
-
-Source: Kaggle's H&M Personalized Fashion Recommendations dataset. The subset
-contains **23,059 families**, each with at least two available article images.
-
-| Split | Images | Families |
-| --- | ---: | ---: |
-| Train | 64,912 | 18,447 |
-| Validation | 8,110 | 2,306 |
-| Test | 8,065 | 2,306 |
-
-Families were split with seed 42; each `product_code` belongs to exactly one
-split. Validation/test families do not update model weights. Full catalog
-validation uses all 8,110 images; full test uses all 8,065 images.
-
-- **Recall@K:** retrieved relevant images divided by all relevant gallery
-  images, averaged across queries.
-- **HitRate@K:** queries with at least one relevant result in the first K.
-- **mAP@K:** mean average precision, accounting for ranking positions. The AP
-  denominator is `min(K, number of relevant gallery images)`.
-
-This is a **product-family variant retrieval proxy**, not personalized
-recommendation or human-labelled general fashion similarity. mAP is not
-classification accuracy.
-
-Controlled query transformations use one query per validation family and the unchanged validation gallery; those results are separate from all-image catalog evaluation. External unlabelled uploads have no retrieval accuracy metric. Published test reuse, optimizer restart, clean-score guard and the absent unaugmented continuation control are documented in [EXPERIMENTS.md](docs/EXPERIMENTS.md).
-
-## Results and interpretation
-
-All 8,065 test images serve as both queries and gallery items. Each query's own
-article is excluded; relevance means **same `product_code`, different
-`article_id`**.
-
-| Test metric | Frozen ResNet18 | Epoch-15 head | Selected augmented head |
-| --- | ---: | ---: | ---: |
-| mAP@10 | 0.262773 | 0.409823 | **0.417074** |
-| Recall@10 | 0.341722 | 0.513853 | **0.523485** |
-| HitRate@10 | 0.615995 | 0.775945 | **0.788841** |
-
-The selected head improves mAP@10 by **1.77% relative to epoch 15** and by
-**58.72% relative to the frozen baseline**. The top ten contain another
-same-family variant for **6,362 / 8,065** queries, compared with 6,258 for epoch 15.
-
-Checkpoint selection used validation only. The original test results had
-already been evaluated and published before augmented continuation. The later
-comparison reuses that test split; it is **not a new blind test**. Test scores
-were not used to choose the continuation epoch or tune its hyperparameters.
-
-Original reports remain in [reports/test](reports/test).
-Continuation reports are in [reports/robust_head](reports/robust_head).
-
-The robust-head validation table, original learning curve and external-photo failure examples remain in the focused experiment/demo documents. The saved demonstration examples do not establish external-photo accuracy.
+- This retrieves product-family variants, rather than personalized recommendations.
+- Cosine is a ranking score, not a probability of correctness.
+- One family split and bounded runs provide no uncertainty estimate.
+- Synthetic robustness transformations do not establish real-photo accuracy.
+- External uploads are qualitative: background, category and colour can cause
+  wrong matches. No verified external-photo benchmark is provided.
+- There is no unaugmented continuation control, so the gain cannot be attributed
+  to augmentation alone. CNN fine-tuning and an independent API are outside scope.

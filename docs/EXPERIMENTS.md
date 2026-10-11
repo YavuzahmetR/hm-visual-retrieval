@@ -1,5 +1,35 @@
 # Completed experiments
 
+## Evaluation and recorded tables
+
+Relevance means the same product family (`product_code`) but a different article
+(`article_id`); a query cannot retrieve itself. Recall@K divides retrieved relevant
+images by all relevant gallery images. HitRate@K counts queries with at least one
+relevant result. mAP@K averages per-query average precision with denominator
+`min(K, number of relevant gallery images)`.
+
+The all-image validation gallery contains 8,110 images; the final test uses all
+8,065 test images as queries and gallery. The transformed benchmark below instead
+uses one query per validation family. These query populations are different.
+
+- [Final test comparison](../reports/robust_head/test_comparison.csv): all three
+  models' Recall, HitRate and mAP at K=1, 5 and 10, plus differences from epoch 15.
+- [Original validation results](../reports/validation/projection_metrics.json):
+  frozen and epoch-15 measurements.
+- [Selected-head validation results](../reports/robust_head/validation_metrics.json):
+  clean and transformed measurements at K=1, 5 and 10.
+- [Robustness comparison](../reports/robust_head/robustness_comparison.csv):
+  epoch-15 and selected-head results for each controlled condition.
+
+CSV columns name the model and metric; each value is a score on the indicated
+query set. Training histories and experiment settings remain beside those files.
+These are result records; the demo loads its gallery from the local `results/`
+directory, rather than from these published tables.
+
+The original test had already been evaluated and published before continuation.
+The later comparison reuses that split. Test scores did not select the continuation
+epoch or tune its hyperparameters; this is nevertheless not a new unseen test.
+
 ### Original head
 
 ResNet18 uses ImageNet1K V1 weights, `fc = Identity`, RGB input, shorter-edge

@@ -51,6 +51,9 @@ HitRate was calculated**. Nine queries had the same first result under both
 heads; this is ranking agreement, not accuracy. These examples illustrate
 behavior and limitations, not measured general fashion similarity.
 
+The batch generated ten ranked candidates per photo; the screenshots display
+the first five.
+
 The screenshots below come from the selected head's saved HTML preview and show
 its top five results. Long source filenames are hidden; product IDs remain
 available in expandable details.
@@ -68,8 +71,7 @@ alongside different colours and designs.**
 
 ![Red dress upload with mixed results](../reports/uploads/red_dress.png)
 
-[Full selected-head HTML preview](../reports/uploads/preview.html) ·
-[Qualitative summary](../reports/uploads/summary.json)
+[Full selected-head HTML preview](../reports/uploads/preview.html)
 
 Download the HTML file and open it locally; its thumbnails are embedded and it
 needs no server. GitHub shows HTML as source rather than embedding this app in

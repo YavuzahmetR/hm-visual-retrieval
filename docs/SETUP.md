@@ -16,9 +16,10 @@ cp project_config.example.json project_config.json
 
 Point `data_root` to the existing images, laid out as
 `<data_root>/images/010/0108775015.jpg`. Existing extracted images can be reused.
-`requirements-lock.txt` records the development environment, including notebook
-dependencies. For the demo, install the runtime packages from `requirements.txt`
-and the pinned PyTorch/Torchvision versions above.
+Install runtime packages from `requirements.txt` and the pinned PyTorch/Torchvision
+versions above. The recorded run also used NumPy 2.5.3, pandas 3.0.6 and Pillow
+12.3.0. The saved gallery's compatibility checks use the PyTorch version; a
+different runtime may require separately reproduced gallery files.
 
 The demo needs these local assets:
 
